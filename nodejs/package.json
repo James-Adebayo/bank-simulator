@@ -1,12 +1,12 @@
 {
-  "name": "nodejs",
+  "name": "bank-simulator-node",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Node.js Banking API and Web Gateway for Bank Simulator",
+  "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch:ts": "tsc --watch",
-    "start": "node --watch dist/index.js"
+    "dev": "tsx watch index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
   "keywords": [
     "Bank simulator",
@@ -17,6 +17,15 @@
   "type": "commonjs",
   "dependencies": {
     "bcrypt": "^6.0.0",
-    "express": "^5.2.1"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
   }
 }
