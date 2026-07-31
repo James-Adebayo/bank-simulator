@@ -1,41 +1,42 @@
-const depositBtn = document.getElementById('deposit');
-const withdrawBtn = document.getElementById('withdraw');
-const transferBtn = document.getElementById('transfer');
-import { balance } from "./user.js";
-depositBtn.addEventListener("click", () => {
-    balance_controller.deposit(2000);
-});
-// withdrawBtn.addEventListener("click", () => {
-//     balance_controller.withdraw(2000);
-//     alert("Transaction processing");
-// });
-// transferBtn.addEventListener("click", () => {
-//     balance_controller.transfer(2000);
-//     alert("Transaction processing");
-// });
+import { globalStore } from "./store.js";
+import { bankApi } from "./api.js";
 
-class BalanceApi{
-    async deposit(amount){
-        const response = await fetch("http://localhost:8080/deposit", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({amount: amount})
-        });
-
-        return await response.json();
-    }
-}
-
-class BalanceController{
-    constructor(api){
+export class BalanceProcessor {
+    constructor(store, api) {
+        this.store = store;
         this.api = api;
     }
-    async deposit(amount){
-        const data = await this.api.deposit(amount);
-        balance.textContent = data.data
+
+    async processDeposit(amount) {
+        if (!amount || amount <= 0) {
+            return { success: false, error: "Please enter a valid amount greater than 0" };
+        }
+
+        // Call backend API (if available)
+        await this.api.deposit(amount);
+
+        // Update local store
+        const result = this.store.deposit(amount);
+        return result;
+    }
+
+    async processWithdraw(amount) {
+        if (!amount || amount <= 0) {
+            return { success: false, error: "Please enter a valid withdrawal amount" };
+        }
+
+        const result = this.store.withdraw(amount);
+        return result;
+    }
+
+    async processTransfer(recipientName, recipientAcc, bankName, amount, note) {
+        if (!recipientName || !recipientAcc || !amount) {
+            return { success: false, error: "Please fill in all recipient details and amount" };
+        }
+
+        const result = this.store.transfer(recipientName, recipientAcc, bankName, amount, note);
+        return result;
     }
 }
 
-const balance_api = new BalanceApi();
-
-const balance_controller = new BalanceController(balance_api);
+export const balanceProcessor = new BalanceProcessor(globalStore, bankApi);

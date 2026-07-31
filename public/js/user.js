@@ -1,45 +1,23 @@
-const username = document.getElementById('username');
-const email = document.getElementById('email');
-export const balance = document.getElementById('balance');
+import { globalStore } from "./store.js";
+import { bankApi } from "./api.js";
 
-class UserApi{
-    async fetchUser(){
-        const response = await fetch("http://localhost:8080/user");
-        const data = await response.json()
-        return data
-    }
-}
-
-class UserStore{
-    constructor(){
-        this.user = null;
-    }
-    async storeUser(user){
-        this.user = user;
-        this.update();
-    }
-    update(){
-        username.textContent = this.user.data.username;
-        email.textContent = this.user.data.email;
-        balance.textContent = this.user.data.balance;
-    }
-}
-
-class UserController
-{
-    constructor(api, store){
-        this.api = api;
+export class UserController {
+    constructor(store, api) {
         this.store = store;
+        this.api = api;
     }
 
-    async user(){
-        const user = await this.api.fetchUser();
-        this.store.storeUser(user);
+    async init() {
+        // Try fetching latest user data from Go backend
+        const result = await this.api.fetchUser();
+        if (result.success && !result.isFallback) {
+            this.store.setUser({
+                name: result.data.username || result.data.name,
+                email: result.data.email,
+                balance: result.data.balance !== undefined ? result.data.balance : this.store.getState().account.balance
+            });
+        }
     }
 }
 
-const api = new UserApi();
-const store = new UserStore();
-export const controller = new UserController(api, store);
-
-controller.user()
+export const userController = new UserController(globalStore, bankApi);

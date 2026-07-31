@@ -3,21 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexBank — Modern FinTech Banking & Investment Portal</title>
     <link rel="stylesheet" href="style.css">
-    <title>NexBank</title>
 </head>
 <body>
-    <h2>=============== WELCOME TO NEXBANK ===================</h2>
-    <h3>Welcome Back, <span id="username">James</span></h3>
-    <p id="email"></p>
-    <div>Balance: <span class="currency">₦</span> <span id="balance"></span></div>
 
-    <div class="cta">
-        <button id="deposit">Deposit</button>
-        <button id="withdraw">Withdraw</button>
-        <button id="transfer">Transfer</button>
+<div class="app-container">
+
+    <!-- Left Navigation Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">⚡</div>
+            <div class="brand-text">NexBank</div>
+        </div>
+
+        <div class="nav-section-title">Navigation</div>
+        <ul class="nav-links">
+            <li class="nav-item active">
+                <a href="#dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/></svg>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#investments">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    <span>Investments</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#cards">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                    <span>Cards</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#analytics">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    <span>Analytics</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="nav-section-title">Account</div>
+        <ul class="nav-links">
+            <li class="nav-item">
+                <a href="#settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <div class="user-pill">
+                <div class="user-avatar" id="userInitials">JA</div>
+                <div class="user-details">
+                    <div class="name" id="username">James Adebayo</div>
+                    <div class="email" id="userEmail">james.adebayo@nexbank.com</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Workspace Area -->
+    <div class="main-wrapper">
+
+        <!-- Top Navigation Header -->
+        <header class="top-header">
+            <div class="header-search">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" placeholder="Search transactions, accounts, or services...">
+            </div>
+
+            <div class="header-actions">
+                <div class="status-badge">
+                    <div class="status-dot"></div>
+                    <span>Live Microservices</span>
+                </div>
+
+                <button class="icon-btn" title="Notifications">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="notification-dot"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Dashboard View -->
+        <main class="dashboard-content">
+
+            <!-- Welcome Greeting Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Welcome Back, <span id="username">James</span> 👋</h1>
+                    <p>Here is your real-time financial portfolio overview and smart engine analytics.</p>
+                </div>
+                <div class="time-widget" id="liveClock">
+                    July 30, 2026 • 16:58 PST
+                </div>
+            </div>
+
+            <!-- Top Hero Grid: Balance Card + Virtual Card Widget -->
+            <div class="hero-grid">
+
+                <!-- Account Balance Hero Card -->
+                <div class="glass-card balance-hero">
+                    <div>
+                        <div class="card-header-flex">
+                            <span class="account-type-pill">Platinum Tier</span>
+                            <div class="account-number-row">
+                                <span>Acc: 3084920194</span>
+                                <button class="copy-btn" id="copyAccBtn" title="Copy Account Number">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="balance-title">
+                            Total Net Account Balance
+                            <button class="eye-toggle-btn" id="toggleBalanceEye" title="Toggle Balance Visibility">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+
+                        <div class="balance-amount-display">
+                            <span class="currency">₦</span>
+                            <span id="balance">5,240,000.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Action Buttons -->
+                    <div class="cta-actions-row">
+                        <button class="action-btn deposit-btn" id="btnDeposit">
+                            <div class="btn-icon">＋</div>
+                            <span>Deposit</span>
+                        </button>
+                        <button class="action-btn withdraw-btn" id="btnWithdraw">
+                            <div class="btn-icon">－</div>
+                            <span>Withdraw</span>
+                        </button>
+                        <button class="action-btn transfer-btn" id="btnTransfer">
+                            <div class="btn-icon">↗</div>
+                            <span>Transfer</span>
+                        </button>
+                        <button class="action-btn invest-btn" onclick="document.getElementById('investmentSection').scrollIntoView({behavior: 'smooth'})">
+                            <div class="btn-icon">⚡</div>
+                            <span>Invest</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Virtual Debit Card Widget -->
+                <div class="glass-card card-widget-container">
+                    <div class="card-widget-header">
+                        <h3>Virtual Debit Card</h3>
+                        <div class="card-theme-selector">
+                            <span class="theme-dot black active" data-theme="black" title="Obsidian Skin"></span>
+                            <span class="theme-dot emerald" data-theme="emerald" title="Emerald Skin"></span>
+                            <span class="theme-dot purple" data-theme="purple" title="Cyber Skin"></span>
+                        </div>
+                    </div>
+
+                    <div class="virtual-card theme-black" id="virtualCard">
+                        <div class="card-top">
+                            <div class="card-chip"></div>
+                            <div class="card-logo">NEXBANK</div>
+                        </div>
+
+                        <div class="card-number">4532 •••• •••• 8819</div>
+
+                        <div class="card-bottom">
+                            <div class="card-holder">
+                                <label>Cardholder</label>
+                                <val>JAMES ADEBAYO</val>
+                            </div>
+                            <div class="card-expiry">
+                                <label>Expires</label>
+                                <val>08/29</val>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Overview Row -->
+            <div class="stats-grid">
+                <div class="glass-card stat-card">
+                    <div class="stat-icon savings">🛡️</div>
+                    <div class="stat-info">
+                        <label>Savings Vault Balance</label>
+                        <div class="amount" id="savingsVal">₦ 1,850,000.00</div>
+                    </div>
+                </div>
+
+                <div class="glass-card stat-card">
+                    <div class="stat-icon inflow">📈</div>
+                    <div class="stat-info">
+                        <label>Monthly Inflow</label>
+                        <div class="amount" id="inflowVal">₦ 1,250,000.00 <span class="badge-pct positive">+18.4%</span></div>
+                    </div>
+                </div>
+
+                <div class="glass-card stat-card">
+                    <div class="stat-icon outflow">📉</div>
+                    <div class="stat-info">
+                        <label>Monthly Outflow</label>
+                        <div class="amount" id="outflowVal">₦ 380,000.00 <span class="badge-pct negative">-4.2%</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investment Engine Section -->
+            <div class="glass-card investment-section" id="investmentSection">
+                <div>
+                    <div class="section-title">
+                        <span style="color: var(--purple);">⚡</span> Financial Engine — Investment Calculator
+                    </div>
+
+                    <div class="calc-form-group">
+                        <label>
+                            <span>Initial Principal Amount (₦)</span>
+                            <span class="val-badge" id="invAmtBadge">₦ 500,000</span>
+                        </label>
+                        <input type="range" id="invAmtRange" min="50000" max="5000000" step="50000" value="500000">
+                        <div class="input-number-wrap" style="margin-top: 0.4rem;">
+                            <input type="number" id="invAmtInput" value="500000">
+                        </div>
+                    </div>
+
+                    <div class="calc-form-group">
+                        <label>
+                            <span>Annual Yield Interest Rate (%)</span>
+                            <span class="val-badge" id="invRateBadge">14%</span>
+                        </label>
+                        <input type="range" id="invRateRange" min="1" max="50" step="0.5" value="14">
+                        <div class="input-number-wrap" style="margin-top: 0.4rem;">
+                            <input type="number" id="invRateInput" value="14" step="0.5">
+                        </div>
+                    </div>
+
+                    <div class="calc-form-group">
+                        <label>
+                            <span>Duration Period (Years)</span>
+                            <span class="val-badge" id="invYearsBadge">3 Years</span>
+                        </label>
+                        <input type="range" id="invYearsRange" min="1" max="10" step="1" value="3">
+                        <div class="input-number-wrap" style="margin-top: 0.4rem;">
+                            <input type="number" id="invYearsInput" value="3">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="section-title">
+                        <span style="color: var(--primary);">📈</span> Projected Compound Yield Graph
+                    </div>
+
+                    <div class="calc-results-box">
+                        <div class="res-item">
+                            <label>Estimated Maturity Value</label>
+                            <div class="val" id="resFinalAmt">₦ 740,772.00</div>
+                        </div>
+                        <div class="res-item">
+                            <label>Total Compound Gain</label>
+                            <div class="val gain" id="resTotalGain">+₦ 240,772.00</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <svg class="growth-chart-svg" viewBox="0 0 500 200" id="investmentSvgChart"></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transaction History Ledger -->
+            <div class="glass-card transactions-section">
+                <div class="table-header-controls">
+                    <div class="section-title" style="margin-bottom: 0;">
+                        <span>📋</span> Recent Transactions Ledger
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <div class="header-search" style="width: 220px;">
+                            <input type="text" id="txSearchInput" placeholder="Filter by title or recipient...">
+                        </div>
+
+                        <div class="filter-pills">
+                            <button class="filter-pill active" data-filter="all">All</button>
+                            <button class="filter-pill" data-filter="credits">Credits (+)</button>
+                            <button class="filter-pill" data-filter="debits">Debits (-)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <tx-table class="tx-table">
+                        <thead>
+                            <tr>
+                                <th>Transaction & Description</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="txTableBody">
+                            <!-- Dynamic Rows Injected by JS -->
+                        </tbody>
+                    </tx-table>
+                </div>
+            </div>
+
+        </main>
     </div>
+</div>
+
+<!-- MODAL: Deposit -->
+<div class="modal-overlay" id="modalDeposit">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2>Direct Cash Deposit</h2>
+            <button class="close-modal-btn">&times;</button>
+        </div>
+        <form class="modal-form" id="depositForm">
+            <div class="form-field">
+                <label>Deposit Amount (₦)</label>
+                <input type="number" id="depositAmountInput" placeholder="e.g. 50000" min="100" required>
+                <div class="preset-btns">
+                    <button type="button" class="preset-btn" data-val="5000">₦5,000</button>
+                    <button type="button" class="preset-btn" data-val="20000">₦20,000</button>
+                    <button type="button" class="preset-btn" data-val="50000">₦50,000</button>
+                    <button type="button" class="preset-btn" data-val="100000">₦100,000</button>
+                </div>
+            </div>
+            <div class="form-field">
+                <label>Deposit Source</label>
+                <select id="depositSourceSelect">
+                    <option>Linked Bank Account (Access Bank •• 4012)</option>
+                    <option>Debit Card (Visa •• 8819)</option>
+                    <option>Wire Transfer</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Confirm Deposit</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: Withdraw -->
+<div class="modal-overlay" id="modalWithdraw">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2>Withdraw Funds</h2>
+            <button class="close-modal-btn">&times;</button>
+        </div>
+        <form class="modal-form" id="withdrawForm">
+            <div class="form-field">
+                <label>Withdrawal Amount (₦)</label>
+                <input type="number" id="withdrawAmountInput" placeholder="e.g. 10000" min="100" required>
+            </div>
+            <div class="form-field">
+                <label>Destination Account</label>
+                <input type="text" value="Personal Checking Account (NexBank)" readonly>
+            </div>
+            <button type="submit" class="submit-btn" style="background: linear-gradient(135deg, #F43F5E, #E11D48); color: white;">Confirm Withdrawal</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: Transfer -->
+<div class="modal-overlay" id="modalTransfer">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2>Transfer Funds</h2>
+            <button class="close-modal-btn">&times;</button>
+        </div>
+        <form class="modal-form" id="transferForm">
+            <div class="form-field">
+                <label>Recipient Name</label>
+                <input type="text" id="transferRecipientInput" placeholder="e.g. Sarah Jenkins" required>
+            </div>
+            <div class="form-field">
+                <label>Account Number</label>
+                <input type="text" id="transferAccInput" placeholder="e.g. 0129384012" required>
+            </div>
+            <div class="form-field">
+                <label>Destination Bank</label>
+                <select id="transferBankSelect">
+                    <option>NexBank Internal</option>
+                    <option>Access Bank PLC</option>
+                    <option>GTBank</option>
+                    <option>Zenith Bank</option>
+                    <option>Kuda Bank</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label>Transfer Amount (₦)</label>
+                <input type="number" id="transferAmountInput" placeholder="e.g. 25000" min="100" required>
+            </div>
+            <div class="form-field">
+                <label>Payment Note / Reference (Optional)</label>
+                <input type="text" id="transferNoteInput" placeholder="e.g. Project Fee Payment">
+            </div>
+            <button type="submit" class="submit-btn">Send Transfer Now</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: Digital Receipt -->
+<div class="modal-overlay" id="modalReceipt">
+    <div class="modal-box" style="text-align: center;">
+        <div class="modal-header">
+            <h2>Transaction Receipt</h2>
+            <button class="close-modal-btn">&times;</button>
+        </div>
+        <div style="font-size: 3rem; margin: 0.5rem 0;">🎉</div>
+        <h3 style="color: var(--emerald); margin-bottom: 0.5rem;">Transfer Successful</h3>
+        <div style="font-size: 1.8rem; font-family: var(--font-heading); font-weight: 800; color: var(--primary);" id="receiptAmount">₦ 0.00</div>
+        
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 1rem; margin: 1.2rem 0; text-align: left; font-size: 0.85rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="color: var(--text-muted);">Ref ID:</span>
+                <span id="receiptTxId" style="font-family: monospace; font-weight: 600;">TX-0000</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="color: var(--text-muted);">Date & Time:</span>
+                <span id="receiptDate">2026-07-30</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="color: var(--text-muted);">Recipient:</span>
+                <span id="receiptRecipient" style="font-weight: 600;">Sarah Jenkins</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">Note:</span>
+                <span id="receiptNote">Transfer</span>
+            </div>
+        </div>
+
+        <button class="submit-btn close-modal-trigger" style="width: 100%;">Done</button>
+    </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ES6 Scripts -->
+<script type="module" src="js/app.js"></script>
+
 </body>
-<script src="js/user.js" type="module"></script>
-<script src="js/balance_processing.js" type="module"></script>
 </html>
