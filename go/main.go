@@ -1,20 +1,21 @@
 package main
 
 import (
-	"net/http"
-	"fmt"
 	"bank-simulator/controller"
-	"bank-simulator/service"
+	"bank-simulator/database"
 	"bank-simulator/repository"
+	"bank-simulator/service"
+	"fmt"
+	"net/http"
 )
 
-
-func main(){
+func main() {
+	database.Connect()
 	userRepo := repository.MakeUserRepository()
 
 	userService := service.MakeUserService(userRepo)
 
-	userController :=  controller.MakeUserController(userService)
+	userController := controller.MakeUserController(userService)
 
 	balanceRepo := repository.MakeBalanceRepository()
 
@@ -23,7 +24,7 @@ func main(){
 	balanceController := controller.MakeBalanceController(balanceService)
 
 	fmt.Println("Server starts at http://localhost:8080/")
-	
+
 	http.HandleFunc("/user", userController.GetUser)
 	http.HandleFunc("/deposit", balanceController.Deposit)
 
